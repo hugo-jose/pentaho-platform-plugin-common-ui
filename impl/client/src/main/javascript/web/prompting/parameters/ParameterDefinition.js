@@ -155,6 +155,18 @@ define(['common-ui/jquery-clean'], function ($) {
             }
           }, this );
         }
+      },
+
+      updateParameterVisibility : function (newParameter){
+        if(newParameter && newParameter.name){
+          this.mapParameters( function (oldParam, group) {
+            if(newParameter.name === oldParam.name){
+              var index = group.parameters.indexOf(oldParam);
+              group.parameters[index].attributes["hidden"] = newParameter.attributes["hidden"];
+              return;
+            }
+          }, this );
+        }
       }
     };
   }
